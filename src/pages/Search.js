@@ -9,7 +9,7 @@ import { actionTypes } from '../reducer'
 import './Search.css'
 
 function Search({ hideButtons = false}) {
-    const [dispatch] = useStateValue();
+    const [,dispatch] = useStateValue();
     const [input, setInput] = useState("");
     const history = useHistory();
 
@@ -17,7 +17,7 @@ function Search({ hideButtons = false}) {
         e.preventDefault();
 
         dispatch({
-            type:actionTypes.SET_ACTION_TERM,
+            type:actionTypes.SET_SEARCH_TERM,
             term:input
         });
 
