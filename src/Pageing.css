@@ -1,0 +1,52 @@
+.paging{
+    margin-left: 240px;
+    margin-bottom: 50px;
+    max-width: 650px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.paging__leftArr{
+    background: url(https://www.google.com/images/nav_logo299.webp);
+    background-position: 0 0;
+    float: left;
+    width: 54px;
+    height: 30px;
+}
+
+.paging__leftArr a{
+    text-decoration: none;
+    width: 54px;
+    float: left;
+    height: 30px;
+}
+
+.paging__currnt{
+    background: url(https://www.google.com/images/nav_logo299.webp);
+    background-position: 114px 0;
+    float: left;
+    width: 22px;
+    height: 30px;
+}
+
+.paging__currnt a{
+    text-decoration: none;
+    width: 20px;
+    float: left;
+    height: 30px;
+}
+
+.paging__righttArr{
+    background: url(https://www.google.com/images/nav_logo299.webp);
+    background-position: 93px 0px;
+    float: left;
+    width: 93px;
+    height: 40px;
+}
+
+.paging__righttArr a{
+    text-decoration: none;
+    width: 93px;
+    float: left;
+    height: 30px;
+}

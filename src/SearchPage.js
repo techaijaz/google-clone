@@ -2,7 +2,7 @@ import React from 'react'
 import {useStateValue} from './StateProvider'
 import useGoogleSearch from './useGoogleSearch'
 //import Responce from './responce'
-import { Link } from 'react-router-dom'
+import { Link,useParams } from 'react-router-dom'
 import './SerchPage.css'
 import Search from './pages/Search';
 import SearchIcon from '@material-ui/icons/Search';
@@ -11,13 +11,15 @@ import ImageIcon from '@material-ui/icons/Image';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import RoomIcon from '@material-ui/icons/Room';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PageIng from './PageIng'
 
 function SearchPage() {
+    let { slug,page } = useParams();
     const [{term} ] = useStateValue();
-    const { data } = useGoogleSearch(term) // LIVE API CALL
-
+    const { data } = useGoogleSearch(term ? term : slug, page) // LIVE API CALL
+  
     //const data = Responce;
-    //console.log(data);
+//console.log('ssss',data);
     return (
         <div className="searchPage">
            <div className="searchPage__header">
@@ -25,10 +27,10 @@ function SearchPage() {
                     <img className="searchPage__logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo"/>
                 </Link>
                 <div className="searchPage__headerBody">
-                    <Search hideButtons={true}/>
+                    <Search hideButtons={true} query={slug}/>
                     <div className="searchPage__options">
                         <div className="searchPage__optionsLeft">
-                            <div className="searchPage__option">
+                            <div className="searchPage__option search-item-active">
                                 <SearchIcon />
                                 <Link to="/all">All</Link>
                             </div>
@@ -64,7 +66,7 @@ function SearchPage() {
                     </div>
                 </div>
            </div>
-           {true && (
+           {data && (
             <div className="searchPage__results">
                 <p className="searchPage__resultCount">
                 About 
@@ -73,16 +75,18 @@ function SearchPage() {
                     {data ? data.searchInformation.formattedSearchTime:''} seconds
                 )
                 </p>
-                {data?data.items.map(item => (
+                {data && data?data.items.map(item => (
+                    
                     <div className="searchPage__result" key={item.link}>
                         <a className="searchPage__resultLink" href={item.link}>
-                            {/*item.pagemap?.cse_image[0]?.src && (
+                        {/*console.log(item.pagemap.cse_image)*/}
+                            {item.pagemap?.cse_image && item.pagemap?.cse_image[0]?.src && (
                                <img 
                                className="searchPage__resultImage"
-                               src={item.pagemap?.cse_image?.length>0 && item.pagemap?.cse_image[0].src}
+                               src={item.pagemap.cse_image && item.pagemap.cse_image[0].src}
                                alt=""
                                /> 
-                            )*/}
+                            )}
                             {item.displayLink} 
                         </a>
                         &#9662;
@@ -96,6 +100,16 @@ function SearchPage() {
                 )):''}
             </div>
            )}
+           {data && (
+            <PageIng 
+            prevPage={(data?.queries.previousPage?data.queries.previousPage:'')} 
+            currentPage={(data?.queries.request?data.queries.request:'')} 
+            nextPage={(data?.queries.nextPage?data.queries.nextPage:'')}
+            page={page}
+            />
+           )}
+           
+          
         </div>
     )
 }

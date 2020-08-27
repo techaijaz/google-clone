@@ -8,20 +8,24 @@ import { actionTypes } from '../reducer'
 
 import './Search.css'
 
-function Search({ hideButtons = false}) {
-    const [,dispatch] = useStateValue();
-    const [input, setInput] = useState("");
-    const history = useHistory();
+function Search({ hideButtons = false,query=''}) {
 
+    const [,dispatch] = useStateValue();
+    const [input, setInput] = useState(query?query:'');
+    const history = useHistory();
+    const page = 1;
     const search = (e) => {
         e.preventDefault();
+        if(!input){
+            return false;
+        }
 
         dispatch({
             type:actionTypes.SET_SEARCH_TERM,
             term:input
         });
 
-        history.push('/search');
+        history.push('/search/'+input+'/'+page);
     }
 
     return (

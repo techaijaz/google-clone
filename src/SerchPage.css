@@ -1,12 +1,12 @@
-.searchPage__header{
+.searchPage__header {
     display: flex;
     position: sticky;
-    top:0;
-    background-color:white;
+    top: 0;
+    background-color: white;
     z-index: 100;
     align-items: flex-start;
-    padding: 30px;
-    border:1px solid lightgray;
+    padding: 30px 30px 0px 30px;
+    border-bottom: 1px solid lightgray;
 }
 
 .searchPage__logo{
@@ -22,15 +22,16 @@
     max-width: unset;
 }
 
-.searchPage__options{
+.searchPage__options {
     display: flex;
     align-items: center;
     color: gray;
+    font-size: 13px;
 }
 
 .searchPage__options a, .searchPage__optionsRight a{
     text-decoration: none;
-    color: gray;
+    color:#5f6368;
 }
 
 .searchPage__optionsRight {
@@ -40,7 +41,8 @@
 .searchPage__option{
     display: flex;
     align-items: center;
-    margin-right:30px;
+    padding: 0 10px 5px 0px;
+    margin-right: 10px;
 }
 
 .searchPage__option a{
@@ -81,9 +83,18 @@
     margin-top: 10px;
     font-size: 14px;
 }
+.searchPage__resultSnippet{
+    color:#4d5156;
+}
 
 .searchPage__resultImage{
     object-fit: contain;
-    width: 20px;
+    width: 25px;
     margin-right: 10px;
+    height:25px;
+}
+
+.search-item-active{
+    border-bottom: 3px solid blue;
+    color:blue;
 }
